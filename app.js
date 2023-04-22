@@ -1,5 +1,3 @@
-let textArea = document.getElementById("text")
-
 // Load the PDF file
 const pdfUrl = 'test.pdf';
 const loadingTask = pdfjsLib.getDocument(pdfUrl);
@@ -24,53 +22,50 @@ loadingTask.promise.then(function(pdf) {
       // Display the extracted text
       console.log(finalText);
       textArea.value = finalText;
-
-      
     });
   });
 });
 
-const speechFu = () => {
+let textArea = document.getElementById("text")
 
-  // Check if the browser supports the SpeechSynthesis API
-if ('speechSynthesis' in window) {
-
-  // Create a new SpeechSynthesisUtterance object
-  const utterance = new SpeechSynthesisUtterance();
-
-  // Find the paragraph to be read out
-  const paragraph = document.querySelector('#text');
-
-  // Set the text to be spoken
-  utterance.text = paragraph.textContent;
-
-  // Choose a voice for the speech synthesis
-  const voices = window.speechSynthesis.getVoices();
-  utterance.voice = voices[0];
-
-  // Speak the text
-  window.speechSynthesis.speak(utterance);
-}
-    
-        // //speech synthesis supported
-        // const utterance = new SpeechSynthesisUtterance()
-    
-        // let textFromPDF = textArea.value
-        // utterance.text = textFromPDF
-        // const voices = window.speechSynthesis.getVoices();
-        // utterance.voice = voices[0];
-    
-        // //speak the text
-        // window.speechSynthesis.speak(utterance)
+const speak = () => {
+  let textFromPDF = textArea.value
+  // Synthesise text
+  let msg = new SpeechSynthesisUtterance(textFromPDF);
+  window.speechSynthesis.speak(msg)
     
     console.log('click')
 }
 
-let btn = document.querySelector('#play')
-btn.addEventListener("click", speechFu)
 
-let textFromPDF = textArea.value
-// Synthesise text
-let msg = new SpeechSynthesisUtterance();
-msg.text = textFromPDF;
-window.speechSynthesis.speak(msg)
+let resume = () => {
+  window.speechSynthesis.resume()
+  console.log("resume")
+}
+
+let pause = () => {
+  window.speechSynthesis.pause()
+  console.log("pause")
+}
+
+let cancel = () => {
+  window.speechSynthesis.cancel()
+  console.log("cancel")
+}
+
+let playBtn = document.querySelector('#play')
+let resumeBtn = document.querySelector('#resume')
+let pauseBtn = document.querySelector('#pause')
+let cancelBtn = document.querySelector('#cancel')
+
+playBtn.addEventListener("click", speak)
+resumeBtn.addEventListener("click", resume)
+pauseBtn.addEventListener("click", pause)
+cancelBtn.addEventListener("click", cancel)
+
+const pauseResume = setInterval(function() {
+  window.speechSynthesis.pause()
+  window.speechSynthesis.resume()
+  console.log("test")
+}, 5000)
+
