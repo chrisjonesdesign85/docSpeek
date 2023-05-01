@@ -1,6 +1,6 @@
-# About DocSpeek
+# About the App
 
-Hello, my name is Chris, and I'm excited to introduce you to my new app. The app is written in modern Javascript, and it allows you to convert PDFs to speech using state of the art voice modeling technology.
+Hello, my name is [YOUR NAME], and I'm excited to introduce you to my new app. The app is written in modern Javascript, and it allows you to convert PDFs to speech using state of the art voice modeling technology.
 
 # How it Works
 
@@ -17,3 +17,4 @@ The app uses modern Javascript and the web speech API to synthesize the text int
 # Conclusion
 
 Thank you for taking the time to read about my app. I hope that you find it useful and enjoyable to use. If you have any feedback or suggestions, please feel free to contact me.
+
